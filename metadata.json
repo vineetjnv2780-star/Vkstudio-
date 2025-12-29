@@ -1,5 +1,5 @@
 {
-  "name": "VK Apps Premium",
+  "name": "VK studio",
   "description": "A premium utility suite featuring a Flashlight, Calculator, and Smart Work Logger powered by Gemini.",
   "requestFramePermissions": [
     "camera"
