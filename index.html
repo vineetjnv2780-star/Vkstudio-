@@ -12,8 +12,8 @@
     <link rel="manifest" href="manifest.json" />
     
     <!-- Icons -->
-    <link rel="icon" type="image/png" href="./icon-192.png" />
-    <link rel="apple-touch-icon" href="./icon-192.png" />
+    <link rel="icon" type="image/png" href="icon-192.png" />
+    <link rel="apple-touch-icon" href="icon-192.png" />
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -25,43 +25,56 @@
         overscroll-behavior: none;
         -webkit-tap-highlight-color: transparent;
       }
-      /* Hide scrollbar for clean UI */
       ::-webkit-scrollbar {
         width: 0px;
         background: transparent;
       }
+      /* Ensure safe areas for premium mobile feel */
+      .h-safe-top { height: env(safe-area-inset-top, 0px); }
+      .pb-safe-bottom { padding-bottom: env(safe-area-inset-bottom, 0px); }
     </style>
     <script>
-      // Polyfill process for compatibility
       window.process = window.process || { env: { NODE_ENV: 'production' } };
     </script>
-  <script type="importmap">
-{
-  "imports": {
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "react": "https://esm.sh/react@^19.2.3",
-    "@google/genai": "https://esm.sh/@google/genai@^1.34.0",
-    "react-router-dom": "https://esm.sh/react-router-dom@^7.11.0"
-  }
-}
-</script>
-</head>
+    <script type="importmap">
+    {
+      "imports": {
+        "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+        "react/": "https://esm.sh/react@^19.2.3/",
+        "react": "https://esm.sh/react@^19.2.3",
+        "@google/genai": "https://esm.sh/@google/genai@^1.34.0",
+        "react-router-dom": "https://esm.sh/react-router-dom@^7.11.0"
+      }
+    }
+    </script>
+  </head>
   <body>
     <div id="root"></div>
     <script type="module" src="./index.tsx"></script>
     <script>
-      // Register Service Worker
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          // Note: sw.js should ideally be at the root level for full scope control
-          navigator.serviceWorker.register('./services/sw.js')
-            .then((registration) => {
-              console.log('ServiceWorker registration successful');
-            })
-            .catch((err) => {
-              console.log('ServiceWorker registration failed: ', err);
-            });
+          try {
+            // Explicitly build the Service Worker URL using the current origin.
+            // This prevents the browser from resolving relative paths against the host domain (ai.studio)
+            // in preview or sandboxed environments.
+            const origin = window.location.origin;
+            const path = window.location.pathname;
+            const baseDir = path.substring(0, path.lastIndexOf('/') + 1);
+            const swUrl = origin + baseDir + 'sw.js';
+            
+            console.log('Registering Service Worker from origin-safe URL:', swUrl);
+            
+            navigator.serviceWorker.register(swUrl, { scope: baseDir })
+              .then((registration) => {
+                console.log('ServiceWorker registration successful with scope:', registration.scope);
+              })
+              .catch((err) => {
+                console.error('ServiceWorker registration failed:', err);
+              });
+          } catch (e) {
+            console.error('ServiceWorker URL construction failed:', e);
+          }
         });
       }
     </script>
