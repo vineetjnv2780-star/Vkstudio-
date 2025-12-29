@@ -1,6 +1,7 @@
+
 {
-  "name": "VK Apps Premium",
-  "short_name": "VK Apps",
+  "name": "Vineet",
+  "short_name": "VK studio",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#09090b",
