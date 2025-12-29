@@ -1,10 +1,10 @@
-const CACHE_NAME = 'vk-apps-cache-v4';
+const CACHE_NAME = 'vk-apps-cache-v6';
 const URLS_TO_CACHE = [
   './',
   './index.html',
   './manifest.json',
-  './public/icons/icon-192.png',
-  './public/icons/icon-512.png',
+  './icon-192.png',
+  './icon-512.png',
   './index.tsx',
   './App.tsx',
   './types.ts',
