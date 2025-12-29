@@ -1,22 +1,17 @@
 {
-  "name": "VK Apps Premium",
-  "short_name": "VK Apps",
-  "start_url": "./index.html",
+  "name": "Vineet",
+  "short_name": "VK studio",
+  "description": "Professional studio services by VK Studio.",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#09090b",
   "theme_color": "#09090b",
   "orientation": "portrait",
   "icons": [
     {
-      "src": "./icons/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "./icons/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png"
+      "src": "/icons/icon-192%20(1).png",
+      "type": "image/png",
+      "sizes": "192x192"
     }
-  ],
-  "description": "Premium"
+  ]
 }
