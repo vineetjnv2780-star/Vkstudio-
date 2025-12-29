@@ -1,4 +1,4 @@
-const CACHE_NAME = 'vk-apps-cache-v6';
+const CACHE_NAME = 'vk-apps-cache-v9';
 const URLS_TO_CACHE = [
   './',
   './index.html',
@@ -15,6 +15,7 @@ const URLS_TO_CACHE = [
   './components/Button.tsx',
   './components/InstallPrompt.tsx',
   './components/Icons.tsx',
+  './components/SplashScreen.tsx',
   './services/geminiService.ts'
 ];
 

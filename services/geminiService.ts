@@ -1,12 +1,30 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { WorkEntry } from '../types';
 
-const apiKey = process.env.API_KEY || '';
-const ai = new GoogleGenAI({ apiKey });
+// Lazy initialization of AI client
+let aiInstance: GoogleGenAI | null = null;
+
+const getAiClient = () => {
+  if (aiInstance) return aiInstance;
+
+  // As per guidelines, exclusively use process.env.API_KEY
+  const apiKey = process.env.API_KEY;
+
+  // If no key found, we can't initialize properly
+  if (!apiKey) {
+    console.warn("Gemini API Key not found. Ensure process.env.API_KEY is set.");
+    return null;
+  }
+
+  aiInstance = new GoogleGenAI({ apiKey });
+  return aiInstance;
+};
 
 export const parseWorkEntry = async (text: string): Promise<Partial<WorkEntry> | null> => {
-  if (!apiKey) {
-    console.warn("Gemini API Key not found");
+  const ai = getAiClient();
+  
+  if (!ai) {
+    console.warn("Gemini Client could not be initialized (Missing API Key)");
     return null;
   }
 
@@ -32,8 +50,9 @@ export const parseWorkEntry = async (text: string): Promise<Partial<WorkEntry> |
             permanentAddress: { type: Type.STRING, nullable: true },
             correspondenceAddress: { type: Type.STRING, nullable: true },
             bikeLocationAddress: { type: Type.STRING, nullable: true },
+            insuranceStart: { type: Type.STRING, nullable: true },
+            insuranceEnd: { type: Type.STRING, nullable: true },
           },
-          required: [],
         },
       },
     });

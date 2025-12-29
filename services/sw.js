@@ -1,20 +1,23 @@
-const CACHE_NAME = 'vk-apps-cache-v1';
+const CACHE_NAME = 'vk-apps-cache-v10';
+// Adjust paths based on sw.js location (services/sw.js)
 const URLS_TO_CACHE = [
-  './',
-  './index.html',
-  './manifest.json',
-  './public/icon-192.png',
-  './public/icon-512.png',
-  './index.tsx',
-  './App.tsx',
-  './types.ts',
-  './components/Dashboard.tsx',
-  './components/Flashlight.tsx',
-  './components/Calculator.tsx',
-  './components/WorkApp.tsx',
-  './components/Button.tsx',
-  './components/InstallPrompt.tsx',
-  './services/geminiService.ts'
+  '../',
+  '../index.html',
+  '../manifest.json',
+  '../icon-192.png',
+  '../icon-512.png',
+  '../index.tsx',
+  '../App.tsx',
+  '../types.ts',
+  '../components/Dashboard.tsx',
+  '../components/Flashlight.tsx',
+  '../components/Calculator.tsx',
+  '../components/WorkApp.tsx',
+  '../components/Button.tsx',
+  '../components/InstallPrompt.tsx',
+  '../components/Icons.tsx',
+  '../components/SplashScreen.tsx',
+  './geminiService.ts'
 ];
 
 // Install event: Cache app shell
