@@ -1,10 +1,10 @@
-const CACHE_NAME = 'vk-apps-cache-v4';
+const CACHE_NAME = 'vk-apps-cache-v1';
 const URLS_TO_CACHE = [
   './',
   './index.html',
   './manifest.json',
-  './public/icons/icon-192.png',
-  './public/icons/icon-512.png',
+  './public/icon-192.png',
+  './public/icon-512.png',
   './index.tsx',
   './App.tsx',
   './types.ts',
@@ -14,7 +14,6 @@ const URLS_TO_CACHE = [
   './components/WorkApp.tsx',
   './components/Button.tsx',
   './components/InstallPrompt.tsx',
-  './components/Icons.tsx',
   './services/geminiService.ts'
 ];
 

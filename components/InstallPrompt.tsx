@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Share, Smartphone } from 'lucide-react';
+import { X, Share, Smartphone } from './Icons';
 import { Button } from './Button';
 
 export const InstallPrompt: React.FC = () => {
