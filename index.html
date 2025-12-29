@@ -8,12 +8,10 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="manifest.json" />
+    <link rel="manifest" href="/manifest.json" />
     
-    <!-- Icons -->
-    <link rel="icon" type="image/png" href="icon-192.png" />
-    <link rel="apple-touch-icon" href="icon-192.png" />
+    <link rel="icon" type="image/png" href="/icon-192.png" />
+    <link rel="apple-touch-icon" href="/icon-192.png" />
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -25,11 +23,7 @@
         overscroll-behavior: none;
         -webkit-tap-highlight-color: transparent;
       }
-      ::-webkit-scrollbar {
-        width: 0px;
-        background: transparent;
-      }
-      /* Ensure safe areas for premium mobile feel */
+      ::-webkit-scrollbar { width: 0px; background: transparent; }
       .h-safe-top { height: env(safe-area-inset-top, 0px); }
       .pb-safe-bottom { padding-bottom: env(safe-area-inset-bottom, 0px); }
     </style>
@@ -54,27 +48,9 @@
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          try {
-            // Explicitly build the Service Worker URL using the current origin.
-            // This prevents the browser from resolving relative paths against the host domain (ai.studio)
-            // in preview or sandboxed environments.
-            const origin = window.location.origin;
-            const path = window.location.pathname;
-            const baseDir = path.substring(0, path.lastIndexOf('/') + 1);
-            const swUrl = origin + baseDir + 'sw.js';
-            
-            console.log('Registering Service Worker from origin-safe URL:', swUrl);
-            
-            navigator.serviceWorker.register(swUrl, { scope: baseDir })
-              .then((registration) => {
-                console.log('ServiceWorker registration successful with scope:', registration.scope);
-              })
-              .catch((err) => {
-                console.error('ServiceWorker registration failed:', err);
-              });
-          } catch (e) {
-            console.error('ServiceWorker URL construction failed:', e);
-          }
+          navigator.serviceWorker.register('/sw.js')
+            .then(() => console.log('SW Registered'))
+            .catch(err => console.log('SW Failed', err));
         });
       }
     </script>
