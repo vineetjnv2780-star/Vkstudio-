@@ -3,17 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-    <title>VK Apps Premium</title>
+    <title>VK Studio</title>
     <meta name="theme-color" content="#09090b" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     
-    <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json" />
     
-    <!-- Icons -->
-    <link rel="icon" type="image/png" href="./icons/icon-192.png" />
-    <link rel="apple-touch-icon" href="./icons/icon-192.png" />
+    <link rel="icon" type="image/png" href="./public/icon-192.png" />
+    <link rel="apple-touch-icon" href="./public/icon-192.png" />
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -25,7 +23,6 @@
         overscroll-behavior: none;
         -webkit-tap-highlight-color: transparent;
       }
-      /* Hide scrollbar for clean UI */
       ::-webkit-scrollbar {
         width: 0px;
         background: transparent;
@@ -46,17 +43,15 @@
 </head>
   <body>
     <div id="root"></div>
+    
+    <script type="module" src="./index.tsx"></script>
+
     <script>
-      // Register Service Worker for Offline capabilities
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('./sw.js')
-            .then((registration) => {
-              console.log('ServiceWorker registration successful with scope: ', registration.scope);
-            })
-            .catch((err) => {
-              console.log('ServiceWorker registration failed: ', err);
-            });
+            .then((reg) => console.log('SW success'))
+            .catch((err) => console.log('SW fail', err));
         });
       }
     </script>
