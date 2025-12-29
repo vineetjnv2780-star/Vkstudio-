@@ -1,0 +1,7 @@
+{
+  "name": "VK Apps Premium",
+  "description": "A premium utility suite featuring a Flashlight, Calculator, and Smart Work Logger powered by Gemini.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
