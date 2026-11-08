@@ -20,3 +20,4 @@ const styles = StyleSheet.create({
   container: { padding: 20 },
   input: { height: 50, borderWidth: 1, borderColor: '#ccc', padding: 10, borderRadius: 8 }
 });
+
